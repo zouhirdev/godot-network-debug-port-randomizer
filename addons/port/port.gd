@@ -3,12 +3,18 @@ extends EditorPlugin
 
 
 const RANGE_MIN = 1000
-const RANGE_MAX = 9999
+const RANGE_MAX = 8888
+
+
+func _enter_tree():
+	build()
+
 
 func build():
 	var interface = self.get_editor_interface()
 	var settings = interface.get_editor_settings()
-	var port = randi() % RANGE_MAX + RANGE_MIN
+	randomize()
+	var port = (randi() % RANGE_MAX) + RANGE_MIN
 	settings.set('network/debug/remote_port', port)
-	prints("Set port to in settings to", port)
+	prints("Port in settings is set to", port)
 	return true
